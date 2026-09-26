@@ -17,7 +17,13 @@ export const DEMO_ROOMS: DemoRoom[] = [
   {
     id: 'neutral-living',
     name: 'Standard 1BR Living Room',
-    description: 'Unpainted walls, neutral gray rental sofa, awaiting warm character',
+    description: 'Unpainted walls, neutral rental layout, awaiting warm character',
+    imageUrl: beforeRoomImg,
+  },
+  {
+    id: 'blank-bedroom',
+    name: 'Sunlit Rental Bedroom',
+    description: 'Bare rental bedroom walls, generic carpet, seeking cozy warmth',
     imageUrl: beforeRoomImg,
   },
 ];
@@ -109,11 +115,13 @@ export const COLOR_PALETTES: ColorPalette[] = [
 
 /**
  * Returns 3 distinct side-by-side makeover concepts
- * based on selected style vibe and color palette.
+ * based on selected style vibe, color palette, and dynamic room images.
  */
 export function getThreeDesignResults(
   selectedVibeId: string,
-  selectedPalette: ColorPalette
+  selectedPalette: ColorPalette,
+  customImages?: Record<string, string>,
+  roomName?: string
 ): RoomDesignResult[] {
   const paletteHexes = selectedPalette.colors.map((c) => c.hex);
 
@@ -125,7 +133,7 @@ export function getThreeDesignResults(
     conceptTitle: 'Option 1: Amber & Walnut Warmth',
     paletteName: selectedPalette.name,
     paletteColors: paletteHexes,
-    imageUrl: midcenturyImg,
+    imageUrl: customImages?.['concept-1'] || midcenturyImg,
     atmosphereDescription: 'Rich tactile warmth with low-slung walnut furniture, warm layered wool rugs, and an effortless removable accent wall.',
     landlordSafetyScore: 100,
     structuralImpact: '0% Structural Changes (Walls & Windows Untouched)',
@@ -165,7 +173,7 @@ export function getThreeDesignResults(
     conceptTitle: 'Option 2: Earthy Boho Haven',
     paletteName: selectedPalette.name,
     paletteColors: paletteHexes,
-    imageUrl: warmBohoImg,
+    imageUrl: customImages?.['concept-2'] || warmBohoImg,
     atmosphereDescription: 'Relaxed organic layers featuring woven rattan, lush potted greenery in terracotta, and light-filtering linen drapery.',
     landlordSafetyScore: 100,
     structuralImpact: '0% Structural Changes (Walls & Windows Untouched)',
@@ -205,7 +213,7 @@ export function getThreeDesignResults(
     conceptTitle: 'Option 3: Serene Bouclé & Oak',
     paletteName: selectedPalette.name,
     paletteColors: paletteHexes,
-    imageUrl: modernMinimalImg,
+    imageUrl: customImages?.['concept-3'] || modernMinimalImg,
     atmosphereDescription: 'Tranquil retreat with creamy oat limewash wallpaper, sculptured bouclé seating, and gentle indirect amber lamps.',
     landlordSafetyScore: 100,
     structuralImpact: '0% Structural Changes (Walls & Windows Untouched)',

@@ -10,6 +10,7 @@ interface ResultsGridProps {
   onDownloadOption: (option: RoomDesignResult) => void;
   selectedPalette: ColorPalette;
   beforeImageUrl: string;
+  roomName?: string;
   isDownloading: boolean;
 }
 
@@ -20,6 +21,7 @@ export const ResultsGrid: React.FC<ResultsGridProps> = ({
   onDownloadOption,
   selectedPalette,
   beforeImageUrl,
+  roomName = 'Your Rental Room',
   isDownloading,
 }) => {
   const favoriteOption = options[favoriteIndex] || options[0];
@@ -36,12 +38,16 @@ export const ResultsGrid: React.FC<ResultsGridProps> = ({
               </span>
               <span className="text-[#C4B7A6]">·</span>
               <span className="text-xs text-[#7A6B5F]">Instant Transformation Results</span>
+              <span className="text-[#C4B7A6]">·</span>
+              <span className="text-xs text-[#5C704C] font-medium bg-[#EBF2E4] px-2 py-0.5 rounded">
+                Rendered on {roomName}
+              </span>
             </div>
             <h2 className="font-serif-display text-2xl sm:text-3xl font-bold text-[#2D2823] mt-1">
               3 Renter-Friendly Makeover Concepts
             </h2>
             <p className="text-sm text-[#6E5D50] mt-1 max-w-2xl">
-              Compare 3 distinct atmosphere variations side-by-side. Pick your favorite concept and save the design picture directly to your device.
+              Compare 3 distinct atmosphere variations side-by-side, all generated directly on your uploaded room ({roomName}) with zero wall or window changes.
             </p>
           </div>
 

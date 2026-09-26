@@ -11,6 +11,7 @@ import { ResultsGrid } from './components/ResultsGrid';
 import { RenterStagingStudio } from './components/RenterStagingStudio';
 import { RenterGuaranteeCard } from './components/RenterGuaranteeCard';
 import { RenterRulebookModal } from './components/RenterRulebookModal';
+import { LandlordPackPanel } from './components/LandlordPackPanel';
 import { RoomStudioProvider } from './context/RoomStudioContext';
 import { STYLE_VIBES, COLOR_PALETTES, BASE_BEFORE_IMAGE, getThreeDesignResults } from './data/mockRooms';
 import { StyleVibe, ColorPalette, RoomDesignResult } from './types';
@@ -288,6 +289,13 @@ function AppContent() {
 
         {/* INTERACTIVE ROOM CANVAS & RIGHT SIDEBAR BUDGET TRACKER */}
         <RenterStagingStudio roomImageUrl={currentRoomImage} />
+
+        {/* LANDLORD APPROVAL PACK – n8n workflow (hidden until the webhook URL is set in src/services/landlordPack.ts) */}
+        <LandlordPackPanel
+          concept={designResults[favoriteIndex]}
+          beforeImage={currentRoomImage}
+          roomName={roomName}
+        />
 
         {/* Renter Guarantee & Architectural Rules */}
         <RenterGuaranteeCard />
